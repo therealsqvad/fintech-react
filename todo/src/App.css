@@ -1,10 +1,9 @@
 .App {
-  text-align: center;
+  
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 15vmin;
 }
 
 .App-header {
@@ -22,11 +21,17 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#todolist {
+  background-image: url(./background.png);
+  background-repeat: repeat-y;
+  min-width: 100vh;
+ color: black; 
+ height: auto;
+}
+
+li {
+ font-family: 'Segoe Script';
+  margin-top: -4vh;
+  margin-left: 2vh;
+  line-height: -10px;
 }
