@@ -29,20 +29,20 @@ let count = init;
 
 function up() {
   count+=step;
-  checkMax();
+  checkingMax();
 }
 
 function down() {
   count-=step;
-  checkMax();
+  checkingMax();
 }
 
 function reset() {
 count = init;
-checkMax();
+checkingMax();
 }
 
-function checkMax() {
+function checkingMax() {
   document.getElementById('count').textContent = 'Count: ' + count;
   if (count === max || count === -max) {
     document.getElementById('message').textContent = message;
