@@ -2,52 +2,34 @@ import React, { Component } from 'react';
 import logo from './TCSlogo.svg';
 import './App.css';
 
-const step = 1, 
-      init = 0, 
-      max = 5,
-      message = 'Count is max'; 
-
 class Counter extends Component {
+  state = { counter: this.props.init, message: '' };
+  up = () => {
+    this.setState({counter: this.state.counter + this.props.step});
+  }
+
+  down = () => {
+    this.setState({counter: this.state.counter - this.props.step});
+  }
+  
+  reset = () => {
+    this.setState({counter: this.props.init});
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <span id="count">Count: {count}</span>
-          <span id="message"></span>
+          <span id="count">Count: {this.state.counter}</span>
+          <span id="message" hidden={this.state.counter !== this.props.max && this.state.counter !== -(this.props.max)}>{this.props.message}</span>
           <br />
-          <button id="upButton" onClick={up}>UP</button>
-          <button id="downButton" onClick={down}>DOWN</button>
-          <button id="resetButton" onClick={reset}>RESET</button>
+          <button id="upButton" onClick={this.up}>UP</button>
+          <button id="downButton" onClick={this.down}>DOWN</button>
+          <button id="resetButton" onClick={this.reset}>RESET</button>
         </header>
       </div>
     );
-  }
-}
-
-let count = init;
-
-function up() {
-  count+=step;
-  checkingMax();
-}
-
-function down() {
-  count-=step;
-  checkingMax();
-}
-
-function reset() {
-count = init;
-checkingMax();
-}
-
-function checkingMax() {
-  document.getElementById('count').textContent = 'Count: ' + count;
-  if (count === max || count === -max) {
-    document.getElementById('message').textContent = message;
-  } else {
-    document.getElementById('message').textContent = '';
   }
 }
 
