@@ -25,7 +25,7 @@ class App extends Component {
     let arr = this.state.tasks;
     let index = arr.indexOf(task);
     let temp = prompt('Введите новое задание:');
-    if (temp !== '') {
+    if (temp !== '' && temp !== null) {
       arr[index] = temp;
     }
     this.setState({
