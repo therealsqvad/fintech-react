@@ -3,7 +3,10 @@ import logo from './TCSlogo.svg';
 import './App.css';
 
 class Counter extends Component {
-  state = { counter: this.props.init, message: '' };
+  state = { 
+    counter: this.props.init,
+    message: ''
+  };
   up = () => {
     this.setState({counter: this.state.counter + this.props.step});
   }
