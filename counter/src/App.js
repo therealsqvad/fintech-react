@@ -17,16 +17,30 @@ class Counter extends Component {
   }
 
   render() {
+    const isCounterEqualPositiveMax = this.state.counter !== this.props.max;
+    const isCounterEqualNegativeMax = this.state.counter !== -(this.props.max);
+    const isHidden = isCounterEqualPositiveMax && isCounterEqualNegativeMax;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <span id="count">Count: {this.state.counter}</span>
-          <span id="message" hidden={this.state.counter !== this.props.max && this.state.counter !== -(this.props.max)}>{this.props.message}</span>
+      <div className='App'>
+        <header className='App-header'>
+          <img 
+            src={logo}
+            className='App-logo'
+            alt='logo'
+          />
+          <span id='count'>
+              Count: {this.state.counter}
+          </span>
+          <span
+              id='message'
+              hidden={isHidden}
+          >
+            {this.props.message}
+          </span>
           <br />
-          <button id="upButton" onClick={this.up}>UP</button>
-          <button id="downButton" onClick={this.down}>DOWN</button>
-          <button id="resetButton" onClick={this.reset}>RESET</button>
+          <button id='upButton' onClick={this.up}>UP</button>
+          <button id='downButton' onClick={this.down}>DOWN</button>
+          <button id='resetButton' onClick={this.reset}>RESET</button>
         </header>
       </div>
     );
