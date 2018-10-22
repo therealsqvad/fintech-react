@@ -4,54 +4,87 @@ import './App.css';
 
 class App extends Component {
 
-  state = { tasks: [], inputed: '' };
+  state = {
+    tasks: [],
+    inputed: ''
+  };
 
   addTask = (e) => {
     e.preventDefault()
-    this.setState({ tasks: [...this.state.tasks, this.state.inputed], inputed: '' });
+    this.setState({
+      tasks: [...this.state.tasks, this.state.inputed],
+      inputed: ''
+    });
   }
 
   inputchange = (e) => {
-    this.setState({ inputed: e.target.value });
+    this.setState({
+      inputed: e.target.value
+    });
   }
 
   delTask(deletedTask) {
-    this.setState(prevState => ({
-      tasks: prevState.tasks.filter(task => task !== deletedTask)
-    }));
+    let tempArr = this.state.tasks;
+    let index = tempArr.indexOf(deletedTask);
+    tempArr.splice(index, 1);
+    this.setState({
+      tasks: tempArr
+    });
   }
 
   changetask(task) {
-    let arr = this.state.tasks;
-    let index = arr.indexOf(task);
+    let tempArr = this.state.tasks;
+    let index = tempArr.indexOf(task);
     let temp = prompt('Введите новое задание:');
     if (temp !== '' && temp !== null) {
-      arr[index] = temp;
+      tempArr[index] = temp;
     }
     this.setState({
-      tasks: arr
+      tasks: tempArr
     });
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className='App'>
+        <header className='App-header'>
+          <img
+            src={logo}
+            className='App-logo'
+            alt='logo'
+          />
           <form onSubmit={this.addTask}>
-            <input type="textarea" id="inputtext" maxLength="60" value={this.state.inputed} onChange={this.inputchange}></input>
-            <button id="add">Добавить</button>
+            <input
+              type='textarea'
+              id='inputtext'
+              maxLength='60'
+              value={this.state.inputed}
+              onChange={this.inputchange}
+            />
+            <button id='add'>Добавить</button>
           </form>
           <p>ToDo List:</p>
-          <div id="todolist" hidden={this.state.tasks.length === 0}>
+          <div id='todolist' hidden={this.state.tasks.length === 0}>
 
-            <ul id="taskList">
+            <ul id='taskList'>
               {
-                this.state.tasks.map((task, index) => <li key={index} id={index} >
-                <span onClick={this.changetask.bind(this, task)}>{task}</span>
-                  <button className='delbtn' onClick={this.delTask.bind(this, task)}><b>X</b></button>
-                </li>)
+                this.state.tasks.map((task, index) => {
+                  return (
+                    <li key={'task' + index} id={index} >
+                      <span onClick={() => this.changetask(task)}>
+                        {task}
+                      </span>
+                      <button
+                        className='delbtn'
+                        onClick={() => this.delTask(task)}
+                      >
+                        <b>
+                          X
+                        </b>
+                      </button>
+                    </li>
+                  );
+                })
               }
             </ul>
           </div>
